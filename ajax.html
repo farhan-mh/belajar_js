@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 name="err" id="err"></h1>
+    <div name="hasil" id="hasil"></div>
+    <button name="tombolLoad" id="tombolLoad" onclick="loadContent()">Load gambar</button>
+    <button name="clear" id="clear" onclick="clearResult()">clear</button>
+
+    <script>
+            var result = [];
+            var limit = 3;
+            var loadedResults = 0; // Menyimpan jumlah hasil yang telah ditampilkan
+        function loadContent(){
+            var xhr = new XMLHttpRequest();
+            var url = "https://api.github.com/users/petanikode";
+
+            xhr.onloadstart = function (){
+                document.getElementById("tombolLoad").innerHTML = "Loading...";
+            }
+            xhr.onerror = function(){
+                var pesan = "error" ;
+                var errPesan = document.getElementById("err");
+                errPesan.innerHTML = pesan;
+                errPesan.style.color = "red";
+                errPesan.style.fontFamily = "supercell-magic"
+                // alert("gagal mengambil data");
+            }
+
+            if (loadedResults >= limit) {
+                document.getElementById("tombolLoad").innerHTML = "Tidak bisa load lagi";
+                return; // Keluar dari fungsi jika sudah mencapai batas
+            }
+           xhr.onloadend = function(){
+            console.log(result)
+            if(this.responseText !== ""){
+                    var data = JSON.parse(this.responseText);
+                    result.push(data); // Menambahkan data ke dalam array results
+                    loadedResults++;
+                    // Mengambil 3 hasil terakhir untuk ditampilkan
+                    var displayResults = result.slice(-limit);
+                    document.getElementById("hasil").innerHTML = ""; // Mengosongkan hasil sebelumnya
+                    // Menampilkan lima hasil terakhir
+            displayResults.forEach(function(result, index){
+                var img = document.createElement('img');
+                img.src = result.avatar_url;
+                img.setAttribute('width','100')
+                var name = document.createElement("h2");
+                name.setAttribute('style','font-family: supercell-magic')
+                console.log(index);
+                name.innerHTML = result.name + ' . ' + (index + 1) ;
+
+                document.getElementById("hasil").append(img,name); // append menambahkan elemen baru
+                // document.getElementById("hasil").appendChild(img);
+                // document.getElementById("hasil").appendChild(name);
+            });
+                    document.getElementById("tombolLoad").innerHTML = "Done";
+
+                    setTimeout(function(){
+                        document.getElementById("tombolLoad").innerHTML = "load Lagi"
+                    },3000)
+
+            }
+           };
+           xhr.open("get",url,true);
+           xhr.send();
+        }
+
+        function clearResult() {
+    if (loadedResults > 0) {
+        // Menghapus elemen terakhir dari displayResults
+        result.pop();
+        loadedResults--; // Mengurangi jumlah hasil yang telah ditampilkan
+        var displayResults = result.slice(-limit);
+
+        // Membersihkan konten sebelumnya di elemen hasil
+        document.getElementById("hasil").innerHTML = "";
+
+        // Menampilkan hasil
+        displayResults.forEach(function(result, index){
+            var img = document.createElement('img');
+                img.src = result.avatar_url;
+                img.setAttribute('width','100')
+                var name = document.createElement("h2");
+                name.setAttribute('style','font-family: supercell-magic')
+                console.log(index);
+                name.innerHTML = result.name + ' . ' + (index + 1) ;
+
+            document.getElementById("hasil").appendChild(img);
+            document.getElementById("hasil").appendChild(name);
+        });
+    }
+}
+
+    </script>
+</body>
+</html>

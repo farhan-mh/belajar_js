@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin:0;
+            padding: 0;
+        }
+        .div-judul{
+            background-color: rgb(75, 214, 75);
+            height: 200px;
+            margin-top: 0;
+        }
+        .div-judul .judul{
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            padding-top: 50px;
+            margin: 0;
+        }
+        .input{
+            margin-top: 25px;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+        .input .inputTxt{
+            width: 20rem;
+            padding: 10px;
+            border: none;
+            font-family: supercell-magic;
+        }
+        .input .addButton{
+            background-color: gray;
+            color: white;
+            padding: 10px;
+            font-size: 17px;
+            transition: 0.2s ease-in ;
+            cursor: pointer;
+            /* height: 20px; */
+        }
+        .input .addButton:hover{
+            background-color: #bbb;
+        }
+        .div-list ul {
+            display: flex;
+            flex-direction: column; /* Menetapkan arah tata letak menjadi vertikal */
+        }
+        .div-list ul li{
+            text-transform: capitalize;
+            padding: 12px 25px 12px 25px;
+            position: relative;
+            display: flex;
+            margin-bottom: 20px;
+            align-items: center;
+            list-style-type: none;
+            font-size: 20px;
+            transition: 0.2s ease-out;
+            margin: 0 200px 0 200px;
+        }
+         ul li:nth-child(even){
+            background-color: #f9f9f9;
+        }
+        .div-list ul li:hover{
+            background-color: #bbb;
+        }
+        /* dari scrip js */
+        .close {
+            position: absolute;
+            right: 0;
+            padding: 12px 25px 12px 25px;
+            
+        }
+        .close:hover{
+            cursor: pointer;
+            color: white;
+            background-color: red;
+        }
+        ul li.checked {
+            background-color: #888;
+            color: #fff;
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <div class="div-judul">
+        <h2 class="judul" style="font-family: supercell-magic;cursor:crosshair">To do list</h2>
+        <div class="input">
+            <input type="text" class="inputTxt" id="inputTxt" placeholder="Input...">
+            <span class="addButton" onclick="tambah()">Tambah</span>
+        </div>
+    </div>
+
+    <div class="div-list">
+        <ul id="ul">
+            <li>sahur</li>
+            <li>turu</li>
+            <li class="checked">war COC</li>
+            <li>tutor after before css</li>
+            <li>totor javascript</li>
+            <li>totor javascript ajax</li>
+        </ul>
+    </div>
+<br><br><br><br>
+<input type="text" id="input">
+<button onclick="num(1)">1</button>
+<button onclick="num(2)">2</button>
+<button onclick="num(3)">3</button>
+<button onclick="min()">-1</button>
+
+<script>
+    var a = document.getElementById('input');
+
+    function num(num) {
+        a.value = a.value+num;
+    }
+     
+    function min(){
+        var Nilai = a.value;
+        a.value = a.value.substring(0,a.value.length-1)
+        console.log(Nilai)
+    }
+</script>
+    <script>
+        var jumlahList = document.getElementsByTagName("li");
+        var i;
+        for(i = 0;i<jumlahList.length ;i++){
+            var span = document.createElement('span');
+            var xList = document.createTextNode('\u00D7');
+            span.className = 'close';
+            span.appendChild(xList);
+            jumlahList[i].appendChild(span);
+        }
+        var closeList = document.getElementsByClassName('close');
+        var i 
+        for(i = 0; i<closeList.length;i++){
+            closeList[i].onclick = function(){
+                var elemenInduk = this.parentElement;// properti pada objek DOM yang mengembalikan elemen induk dari elemen yang dipilih
+                elemenInduk.style.display = "none";
+            }
+        }
+        var ul = document.querySelector('ul');
+        ul.addEventListener('click', function(ev){
+            if(ev.target.tagName === 'LI'){  //li disini hrus kapital
+                ev.target.classList.toggle('checked');
+            }
+        }, false);
+
+        function tambah(){
+            var input = document.getElementById('inputTxt').value;
+            var newElemenLi = document.createElement('li');
+            var textNode = document.createTextNode(input);
+            newElemenLi.appendChild(textNode);
+            console.log(input);
+
+            if(input == ''){
+                alert('belum di isi')
+            }else{
+                document.getElementById('ul').appendChild(newElemenLi)
+            }
+                document.getElementById('inputTxt').value = "";
+                var span = document.createElement('span');
+                var xList = document.createTextNode('\u00D7');
+                span.className = 'close';
+                span.appendChild(xList);
+                newElemenLi.appendChild(span);
+            var i;
+            for(i = 0;i < jumlahList.length; i++){
+                closeList[i].onclick = function(){
+                    var elemenInduk = this.parentElement;
+                    elemenInduk.style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

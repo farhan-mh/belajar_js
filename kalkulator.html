@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator</title>
+</head>
+<body>
+<!-- kalkulator 1 -->
+<label for="">Masukkal angka ke 1: </label>
+    <input type="number" name="angka1" class="angka1" id=""><br>
+
+    <label for="">masukkan angka ke2: </label>
+    <input type="number" name="angka2" class="angka2" id=""><br>
+
+    <select name="pilih" class="pilih" id="">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select>
+    <button id="klik" onclick="tombol()">klik</button>
+    <h1 id="output"></h1>
+    <h1 id="output2"></h1>
+ 
+<script>
+    var ak1 = document.querySelector('.angka1');
+    var ak2 = document.querySelector('.angka2');
+    var plh = document.querySelector('.pilih');
+    var o = document.getElementById('output');
+    var o2 = document.getElementById('output2');
+    var tmbl = document.getElementById('klik');
+
+    function tombol() {
+        let ak1Value = ak1.value;
+        let ak2Value = ak2.value;
+        let plhValue = plh.value;
+        let ak12 = ak1Value + plhValue + ak2Value;
+        o.innerHTML = ak12;
+
+        if (plhValue == '+'){
+            var plus = parseInt(ak1Value) + parseInt(ak2Value);
+            console.log(plus);
+            o2.innerHTML = plus
+        }else if(plhValue == '-'){
+            var plus = parseInt(ak1Value) - parseInt(ak2Value);
+            console.log(plus);
+            o2.innerHTML = plus
+        }else if(plhValue == '*'){
+            var plus = parseInt(ak1Value) * parseInt(ak2Value);
+            console.log(plus);
+            o2.innerHTML = plus
+        }else if(plhValue == '/'){
+            var plus = parseInt(ak1Value) / parseInt(ak2Value);
+            console.log(plus);
+            o2.innerHTML = plus
+        }else{
+            // o2.innerHTML = "HELLO World"; ????
+        }
+    }
+    </script>
+    <br><br><br><br><br>
+    <!-- Kalkulator 2-->
+<form name="form">
+    <input type="text" class="textView" name="textView" disabled>
+</form>
+
+<table>
+    <tr>
+        <td><input type="button" class="button" value="c" onclick="clearrr()"></td>
+        <td><input type="button" class="button" value="Del" onclick="del()"></td>
+        <td><input type="button" class="button" value="%" onclick="insert('/100')"></td>  <!-- % ERROR ??--> 
+        <td><input type="button" class="button" value="x" onclick="insert('*')"></td>
+        <td><input type="button" class="button" value="pi" onclick="insert('22/7')"></td>
+    </tr>
+    <tr>
+        <td> <input type="button" class="button" value="7" onclick="insert(7)"></td>
+        <td> <input type="button" class="button" value="8" onclick="insert(8)"></td>
+        <td><input type="button" class="button" value="9" onclick="insert(9)"></td>
+        <td><input type="button" class="button" value="/" onclick="insert('/')"></td>
+        <td><input type="button" class="button" value="PI" onclick="insert('3.14')"></td>      
+    </tr>
+    <tr>
+        <td><input type="button" class="button" value="4" onclick="insert(4)"></td>
+        <td><input type="button" class="button" value="5" onclick="insert(5)"></td>
+        <td><input type="button" class="button" value="6" onclick="insert(6)"></td>
+        <td><input type="button" class="button" value="-" onclick="insert('-')"></td>
+    </tr>
+    <tr>
+        <td><input type="button" class="button" value="1" onclick="insert(1)"></td>
+        <td><input type="button" class="button" value="2" onclick="insert(2)"></td>
+       <td> <input type="button" class="button" value="3" onclick="insert(3)"></td>
+       <td><input type="button" class="button" value="+" onclick="insert('+')"></td>
+    </tr>
+    <tr>
+        <td colspan="2"> <input style="width:50px;" type="button" class="button" value="0" onclick="insert(0)"></td> 
+        <td> <input  type="button" class="button" value="." onclick="insert('.')"></td>
+        <td><input type="button" class="button" value="=" onclick="equal()"></td> 
+    </tr>
+</table>
+
+<script type="text/javascript">
+function insert(num){
+        document.form.textView.value = document.form.textView.value+num;
+    }
+
+function clearrr(){
+    document.form.textView.value = '';
+}
+
+function del(){
+    var x = document.form.textView.value;
+    document.form.textView.value = x.substring(0,x.length-1);
+
+}
+
+function equal(){
+    const formater = new Intl.NumberFormat('en');
+    var jumlah = document.form.textView.value;
+    if(jumlah == ''){
+        document.form.textView.value = "Masukkan angka";
+    }
+    if(jumlah){
+        document.form.textView.value = eval(jumlah);
+    }
+    
+}   
+</script>
+<!-- ---====--- -->
+<br><br><br><br>
+<!-- kalkulator 3 -->
+<input type="text" name="test">
+<table>
+    <tr>
+        <td style="margin:0 50px 0 50px; background-color: rgb(203, 108, 25);"><label for="" onclick="k()">jumlah</label></td>
+        <td style="margin:0 50px 0 50px; background-color: rgb(203, 108, 25);"><label for="" onclick="hapus1()">Hapus -1</label></td>
+        <td style="margin:0 50px 0 50px; background-color: rgb(203, 108, 25);"><label for="" onclick="bersih()">clear</label></td>
+    </tr>
+</table>
+
+<script type="text/javascript">
+
+    let testing = document.getElementsByName('test')[0];
+    let testing2 = document.getElementsByName('test')[0];
+function k(){
+    let d = testing.value;
+    let result = eval(d);
+    if(d.trim() != ''){  //trim() menghapus spasi:"xx- HELLO WORLDx!xxxxx"
+        console.log(d);
+        console.log(result);
+        testing2.value = d + " = " +result;
+    }else{
+     testing2.value = "belum diisi";   
+     console.log("belum di isi");
+    }
+}
+function hapus1(){
+    let dn = testing.value;
+    var ubahKeString = dn.toString();
+    var nilaiNya = ubahKeString.substring(0,ubahKeString.length-1);
+    testing.value = nilaiNya;
+}
+function bersih(){
+    testing.value = '';
+}
+</script>
+
+</body>
+</html>

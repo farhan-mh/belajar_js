@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+         .judul{
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            padding-top: 10px;
+            margin: 0;
+        }
+        .div-header{
+            padding: 50px;
+            margin: 0;
+            background-color: tomato;
+        }
+        .div-input{
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        }
+        .input{
+            padding: 4px;
+            border: none;
+        }
+        .tambah{
+            background-color: gray;
+            color: white;
+            cursor: pointer;
+            /* font-size: 20px; */
+            padding: 3px;
+            transition: 0.2s ;
+        }
+        .tambah:hover{
+            background-color: #bbb;
+        }
+        ul li {
+            padding: 10px 35px;
+            margin: 0 200px;
+            list-style-type: none;
+            background-color: white;
+            transition: 0.3s ease-in-out;
+        }
+        @media (max-width: 750px){ 
+            ul li {
+            padding: 10px 35px;
+            margin: 0 55px;
+            list-style-type: none;
+            background-color: white;
+            transition: 0.3s ease-in-out;
+        }
+        .close{
+            margin: 0 50px;
+            margin-top: -10px;
+            position: absolute;
+            padding: 10px 25px;
+            right: 0;
+            position: absolute;
+            transition: 0.2s;
+        }
+        ul li.check::before {
+            content: '';
+            position: absolute;
+            border-color: #39f909f3;
+            border-style: solid;
+            border-width: 0 2px 2px 0;
+            /* top: 10px; */
+            left: 7rem;
+            transform: rotate(45deg);
+            height: 15px;
+            width: 7px;
+        }
+        }
+        ul li:nth-child(odd){
+           background-color: #dcdbdb;
+        }
+         ul li:hover {
+            background-color: rgb(69, 61, 61);
+            cursor: pointer;
+        }
+        @media(min-width: 751px){
+        .close{
+            margin: 0 200px;
+            margin-top: -10px;
+            position: absolute;
+            padding: 10px 25px;
+            right: 0;
+            position: absolute;
+            transition: 0.2s;
+        }
+       
+        }
+        
+         .close:hover{
+            background-color: red;
+        }
+        ul li.check{
+            text-decoration: line-through;
+            /* color: white; */
+            background-color: bisque;
+        }
+        .edit{
+            color: red;
+            float: right;
+            padding: 10px 25px;
+            margin-top: -10px;
+            margin-right: 25px;
+            transition: 0.2s;
+        }
+        .edit:hover{
+            background-color: green;
+        }
+          .check::before {
+            content: '';
+            position: absolute;
+            border-color: #39f909f3;
+            border-style: solid;
+            border-width: 0 2px 2px 0;
+            /* top: 10px; */
+            left: 16rem;
+            transform: rotate(45deg);
+            height: 15px;
+            width: 7px;
+        }
+    </style>
+</head>
+<body>
+    <div class="div-header">
+        <h2 class="judul" style="font-family: supercell-magic;cursor:crosshair">To do list</h2>
+       <div class="div-input">
+        <input type="text"  class="input" id="input">
+        <span class="tambah" onclick="klik()">tambah</span>
+       </div>
+    </div>
+    <div class="list">
+        <ul id="ul">
+            <li>turu</li>
+            <li>war</li>
+            <li>ngoding</li>
+            <li>turu lagi</li>
+        </ul>
+       </div>
+       <script>
+        // menambah list 
+          function klik(){
+            var value = document.getElementById("input").value;
+            var li = document.createElement('li');
+            var nilai = document.createTextNode(value);
+             li.appendChild(nilai);
+             document.getElementById('ul').appendChild(li)
+            //  console.log(li);
+            // === close ===//
+            var span = document.createElement('span')
+            var xList = document.createTextNode('\u00D7');
+            span.append(xList);
+            span.className = 'close';
+            li.appendChild(span);
+             //==== Menutup <li> dengan tombol x ===== ini ada 2 dalam function menambah dan tidak dalam function//
+        var ambilX = document.getElementsByClassName('close');
+        for(var i = 0; i<ambilX.length;i++){
+            ambilX[i].onclick = function(){
+                var ambilInduk = this.parentElement;
+                ambilInduk.style.display = "none";
+            }
+          }
+
+        //=== tambah Edit ===//
+        var li2 = document.createElement('li');
+        var span2 = document.createElement('span');
+        span2.className = 'edit';
+        var Edit = document.createTextNode('E');
+        span2.appendChild(Edit);
+        li.appendChild(span2);
+        document.getElementById('ul').appendChild(li);
+        //   === /end/ edit ===//
+            document.getElementById("input").value = "";
+          }
+        //===== Menambah x =====// 
+          var jumlahList = document.getElementsByTagName('li');
+          for(var i = 0; i<jumlahList.length;i++){
+            var span = document.createElement('span')
+            var xList = document.createTextNode('\u00D7');
+            span.appendChild(xList);
+            span.className = 'close';
+            jumlahList[i].appendChild(span);
+            // console.log('eee',i)
+          }
+          //===== /end/ Menambah x =====// 
+        
+        //==== Menutup <li> dengan tombol x ===== ini ada 2 dalam function menambah dan tidak dalam function//
+        var ambilX = document.getElementsByClassName('close');
+        for(var i = 0; i<ambilX.length;i++){
+            ambilX[i].onclick = function(){
+                var ambilInduk = this.parentElement;
+                ambilInduk.style.display = "none";
+            }
+            // console.log(ambilX,i);
+          }
+        //   cara 2: //
+        // var ul = document.getElementById('ul');
+        // ul.addEventListener('click', (ev) =>{
+        //      if(ev.target.tagName === "SPAN"){
+        //         var ambilInduk = ev.target.parentElement;
+        //           ambilInduk.style.display = "none";
+        //      }
+        // });
+        // === /end/  Menutup <li> dengan tombol x ===//
+
+        //   === Menambah Class Check === //
+        var ul = document.getElementById('ul');
+        ul.addEventListener('click', (ev) =>{
+             if(ev.target.tagName == "LI"){
+                ev.target.classList.toggle('check');
+                // console.log(ev.target);
+             }
+        });
+
+        // === Tambah Edit === //
+        for(var i = 0;i<jumlahList.length;i++){
+            var span = document.createElement('span');
+            var txt = document.createTextNode('E');
+            span.className = 'edit';
+            span.appendChild(txt);
+            jumlahList[i].appendChild(span);
+        }
+        // === /end/ Tambah Edit ===//
+        var ul = document.getElementById('ul');
+        ul.addEventListener('click', function(event){
+            if(event.target.classList.contains("edit")){
+                var listItem = event.target.parentElement;
+                console.log(listItem)
+        var text = listItem.firstChild.textContent.trim();
+        var newValue = prompt('Edit list:', text);
+            }
+        })
+        // cara 2: //
+        // var ambilEdit = document.getElementsByClassName('edit');
+
+        // for(var i = 0; i < ambilEdit.length; i++){
+        //     ambilEdit[i].onclick = function () {
+        //         alert(i);
+        //         console.log(ambilEdit[i])
+        //     }
+        // }
+       </script>
+</body>
+</html>

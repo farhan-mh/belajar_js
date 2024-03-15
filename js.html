@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="js.css">
+    <title>js</title>
+</head>
+<body onload="jamm()">
+    <script>
+        // var nama=prompt("Nama mu?","");
+        // if(nama){
+        //     document.write("hello  "+nama);
+        // }else {
+        //     document.write("hello  "+ "bro");
+        // }
+        
+    </script>
+    <h2>Hello <span id="Hello"> </span></h2>
+    <br>
+    <textarea name="" id="" cols="30" rows="10" onkeyup="document.getElementById('counter').innerText = this.value.length;"></textarea>
+    <h3 >Panjang : <span id="counter">0</span> Karakter</h3>
+    <hr style="margin-right:90% ;">
+    
+   <span id="clock" ></span>
+   <hr style="margin-right:90% ;">
+   <br><br>
+   <script>let price = 15; 
+      price;
+      var p=21;
+      p+=4;
+      
+      document.writeln(p);  //    //
+      
+      document.write(price);
+
+      function hello(){
+        alert ("test");
+      }
+
+      function nilai(){
+      prompt("Masukkan Nilai : ","");
+      }
+      function klik4(){
+        var confrim = confirm ('ya / tidak');
+        var hasil = confrim ? "welcome":" . ";
+        console.log(hasil);
+      }
+    
+//    if (nilai >= 90){
+//         document.write("A");
+//     } else if(nilai >= 80) {
+//         document.write("B");
+//     } else if(nilai>= 70) {
+//         document.write("C");
+//     } 
+  
+//     </script>
+     <br><br>
+     <button onclick="alert('pesan');">klik</button>
+     <button onclick="hello();">klik 2</button>
+     <button onclick="nilai();">klik 3</button>
+     <button onclick="klik4();" id="4">klik 4</button>
+     <span id="klik">0</span>
+     <br>
+     <script>
+  /*    var yakin=confirm ("ya / tidak");
+
+        if(yakin){
+
+        }else{
+           window.location = "https://youtube.com";
+        }
+ 
+ var a = 15;
+        var b = 4;
+        var c = 0;
+
+        // pengurangan
+        c = a - b;
+        document.write(`${a} - ${b} = ${c}<br/>`);
+        c = a * b;
+        document.write(`${a} * ${b} = ${c}<br/>`);
+      var name="fmh";
+      document.writeln(`${name}<br/>`);
+      document.write(name);
+       */
+
+    </script>
+<!-- // crud /js.html 1 -->
+<p>_____________________________</p>
+<fieldset>
+    <legend>Input Form</legend>
+    <input type="text" name="barang" placeholder="input nama barang..." /> <!-- name="barang" -->
+    <input type="button" onclick="addBarang()" value="Tambah" />
+</fieldset>
+
+<div>
+    <ul id="list-barang">
+    </ul>
+</div>
+
+<p>_____________________________</p>
+
+<h1>Kirim Data dengan Ajax</h1>
+<form method="POST" onsubmit="return sendData()">
+    <p>
+        <label>Title</label>
+        <input type="text" id="title" placeholder="judul artikel">
+    </p>
+    <p>
+        <label>Isi Artikel</label><br>
+        <textarea id="body" placeholder="isi artikel..." cols="50" rows="10"></textarea>
+    </p>
+    <input type="submit" value="Kirim" />
+</form>
+
+<script>
+    function sendData() {
+        var xhr = new XMLHttpRequest();
+        var url = "https://jsonplaceholder.typicode.com/posts";
+
+        var data = JSON.stringify({
+            title: document.getElementById("title").value,
+            body: document.getElementById("body").value,
+            userId: 1
+        });
+
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhr.onload = function () {               
+            console.log (this.responseText);
+        };
+
+        xhr.send(data);
+        return false;
+    }
+</script>
+<p>____________________________________</p>
+<!-- //keyboard -->
+<h1 id="down"></h1>
+ <script>
+    const keydown = document.getElementById("down");
+
+    document.addEventListener("keydown", function(b){
+        keydown.innerText = `Menekan: ${b.key}`;
+    });
+    // document.addEventListener("keydown", function(event){
+    //     keydown.innerHTML = `Menekann ${event.key}`;
+    // });
+ </script>
+<!-- Mouse -->
+<button id="btn-enter" onclick="alert('mouse')">Event mouse</button>
+ <script>
+    const mouse = document.getElementById('btn-enter');
+    
+    mouse.addEventListener('mouseenter',function(event){
+        event.target.innerText = 'Mouse enter';
+        event.target.style.transform = 'translateX(150px)';
+        event.target.style.transition = 'all 0.2s ease'
+        event.target.style.cursor= 'pointer';
+        // event.target.style.display='none'
+    });
+
+    mouse.addEventListener('mouseleave', function(event2){
+        event2.target.style.transform= 'translateX(0px)';
+        event2.target.innerText = 'Mouse leave';
+        event2.target.style.transition = 'all 0.2s ease'
+        // event2.target.style.display='block';
+    })
+ </script>
+<p>____________________________________</p>
+
+<div id="info"></div>
+<select name="s" id="s">
+    <option >Apel</option>
+    <option >Mangga</option>
+    <option >Jeruk</option>
+</select>
+
+<script>
+    const info = document.getElementById('info');
+    const buah = document.getElementById('s');
+
+    buah.addEventListener("change", function(a){
+        info.innerText = `Anda Memilih: ${a.target.value} `;
+    });
+</script>
+<p>____________________________________</p>
+<!-- input ?? -->
+<!-- onkeyup="document.getElementById('NamaOutput').innerText = this.value" -->
+<p><span>Nama: </span><input name="Nama" type="text" id="Nama"  ></p>
+<p><span>Kelas: <input  type="text" id="Kelas"></span></p>
+<p><span>Absen:  <input type="number" id="absen"  ></span></p>
+
+<h2>Nama: <span id="NamaOutput"></span></h2>
+<h2>Kelas: <span id="Kelass"></span></h2>
+<!-- <h2>Kelas: <span id="Kelass"></span></h2> -->
+<h2><span id="aOutput"></span></h2>
+
+<script>
+    let nama = document.getElementById('Nama');
+    let NamaOutput = document.getElementById('NamaOutput');
+    let kelas = document.getElementById('Kelas');
+    let kelasOutput = document.getElementById('Kelass');
+    var a = document.getElementById('absen');
+    let aOutput = document.getElementById('aOutput');
+
+        // NamaOutput.innerHTML = ` ${nama.value}`;
+        nama.addEventListener("change", function(nm){
+        NamaOutput.innerText = ` ${nm.target.value} `;
+    });
+    kelas.addEventListener("change", function(k){
+        kelasOutput.innerText = ` ${k.target.value} `;
+    });
+    a.addEventListener("change", function(b){
+        aOutput.innerText = `Absen: ${b.target.value} `;
+    });
+</script>
+<p>____________________________________</p>
+<!-- eee triger ?? -->
+<br>
+<button onclick="cekSaldo(b)" id="IsiSaldo">Gaji</button>
+<span id="Cek"></span>
+<script>
+     const formater = new Intl.NumberFormat('en');
+     var Cek = document.getElementById('Cek');
+     var IsiSaldo = document.getElementById('IsiSaldo');
+
+    function cekSaldo(){
+     var namaKaryawan = prompt('Nama:');
+     var GajiPerhari  = prompt('Gaji perhari');
+     var JumlahMasukKerja  = prompt('Jumlah hari masuk kerja: ');
+     Cek.innerHTML = `</br>
+     Nama: ${namaKaryawan}</br>
+     Gaji perhari: Rp.${formater.format(GajiPerhari)}</br>
+     Jumlah masuk kerja: ${JumlahMasukKerja}</br>
+     Gaji didapatkan: Rp.${formater.format(GajiPerhari*JumlahMasukKerja)}`;
+    }
+    
+</script>
+<p>____________________________________</p>
+<br>
+<!-- Kalkulator -->
+<form name="form">
+    <input type="text" class="textView" name="textView">
+</form>
+
+<table>
+    <tr>
+        <td><input type="button" class="button" value="c" onclick="clearrr()"></td>
+        <td><input type="button" class="button" value="Del" onclick="del()"></td>
+        <td><input type="button" class="button" value="%" onclick="insert('/100')"></td>  <!-- % ERROR ??--> 
+        <td><input type="button" class="button" value="x" onclick="insert('*')"></td>
+        <td><input type="button" class="button" value="pi" onclick="insert('22/7')"></td>
+    </tr>
+    <tr>
+        <td> <input type="button" class="button" value="7" onclick="insert(7)"></td>
+        <td> <input type="button" class="button" value="8" onclick="insert(8)"></td>
+        <td><input type="button" class="button" value="9" onclick="insert(9)"></td>
+        <td><input type="button" class="button" value="/" onclick="insert('/')"></td>
+        <td><input type="button" class="button" value="PI" onclick="insert('3.14')"></td>      
+    </tr>
+    <tr>
+        <td><input type="button" class="button" value="4" onclick="insert(4)"></td>
+        <td><input type="button" class="button" value="5" onclick="insert(5)"></td>
+        <td><input type="button" class="button" value="6" onclick="insert(6)"></td>
+        <td><input type="button" class="button" value="-" onclick="insert('-')"></td>
+    </tr>
+    <tr>
+        <td><input type="button" class="button" value="1" onclick="insert(1)"></td>
+        <td><input type="button" class="button" value="2" onclick="insert(2)"></td>
+       <td> <input type="button" class="button" value="3" onclick="insert(3)"></td>
+       <td><input type="button" class="button" value="+" onclick="insert('+')"></td>
+    </tr>
+    <tr>
+        <td colspan="2"> <input style="width:50px;" type="button" class="button" value="0" onclick="insert(0)"></td> 
+        <td> <input  type="button" class="button" value="." onclick="insert('.')"></td>
+        <td><input type="button" class="button" value="=" onclick="equal()"></td> 
+    </tr>
+</table>
+
+<script type="text/javascript">
+function insert(num){
+    // var formater = Intl.NumberFormat('en-us');
+    //     var InsertValue = 
+        document.form.textView.value = document.form.textView.value+num;
+        // console.log(InsertValue)
+    }
+
+function clearrr(){
+    document.form.textView.value = '';
+}
+
+function del(){
+    var x = document.form.textView.value;
+    document.form.textView.value = x.substring(0,x.length-1);
+
+}
+
+function equal(){
+    const formater = new Intl.NumberFormat('en');
+    var jumlah = document.form.textView.value;
+    if(jumlah == ''){
+        document.form.textView.value = "Masukkan angka";
+    }
+    if(jumlah){
+        // const formater = new Intl.NumberFormat('en-us');
+        // const Je = eval(jumlah);
+        // const evall =  document.form.textView.value = formater.format(Je)
+        document.form.textView.value = eval(jumlah);
+        // console.log(formater.format(eval));
+    // const result = formater.format(Je)
+    //     console.log(result);
+    //     console.log(jumlah);
+    }
+    
+}   
+</script>
+<p>____________________________________</p>
+<!-- WARNA -->
+<h2>Ubah Warna text </h2>
+<br>
+<form action="">
+<textarea name="txtArea" class="txtArea" id="txtArea" cols="30" rows="10" onkeyup="document.getElementById('counterrr').innerText = this.value;"></textarea>
+</form>
+<span>Background color: </span>
+<p><input type="text" id="gantiBg"> </p> 
+
+    <span>Ganti Semua Warna: </span>
+<input type="color" id="gantiW" onclick="document.getElementById('warna').innerText = this.value;">
+
+<h3 > : <span id="counterrr">0</span> </h3>
+<h3 > : <span id="warna">0</span> </h3>
+<script>
+      var txtArea = document.getElementById('txtArea');
+      var gantiBg = document.getElementById('gantiBg');
+      var gantiW = document.getElementById('gantiW');
+    //   let Ww = document.getElementById('warna')
+    //   var All = document.getElementById('All')
+
+      txtArea.addEventListener('change', function(TA){
+        document.body.style.color = txtArea.value;
+      })
+      gantiBg.addEventListener('change', function(TA){
+        document.body.style.backgroundColor = gantiBg.value;
+      })
+      gantiW.addEventListener('change', function(TA){
+        document.body.style.backgroundColor = gantiW.value;
+        document.body.style.color = gantiW.value;
+      })
+
+      All.addEventListener('change', function(TA){
+        Ww.innerText = `${TA.target.value}`;
+        console.log(`////${TA.target.value}`)
+      })
+</script>
+<p>____________________________________</p>
+
+
+<button onclick="A()" id="TA">A</button>
+<button onclick="B()" id="TB">Volume Kubus</button>
+<button onclick="C()" id="TB">C</button>
+
+<div id="outputk1"  value="5"></div>
+<div id="outputk2"></div>
+<div id="outputk3"></div>
+<div id="tombol"></div>
+<form action="" name="form">
+<span id="HSL_V" name="HSL_V1" value=""></span>
+<span id="HSL_V2" name="HSL_V22"></span>
+<span id="HSL_V3" name="HSL_V33"></span>
+<span id="testv" name="HSL_V33"></span>
+</form>
+
+<script type="text/javascript">
+      var TA = document.getElementById('TA');
+      var TB = document.getElementById('TB');
+      var output  = document.getElementById('outputk1');
+      var output2 = document.getElementById('outputk2');
+      var output3 = document.getElementById('outputk3');
+      var tombol  = document.getElementById('tombol');
+      var hslv    = document.getElementById('HSL_V');
+       const testv = document.getElementById('testv');
+      function A(){
+         var PanjangBalok = output.innerHTML  = `Tes <input type="number" placeholder="Panjang"  value="" id="a" name="vke1" onkeyup="document.getElementById('HSL_V').innerText = this.value;"><br>`
+         var TinggiBalok  = output2.innerHTML = `Tess <input type="number" placeholder="Tinggi" id="aa"  onkeyup="document.getElementById('HSL_V2').innerText = this.value;"><br> `
+         var LebarBalok   = output3.innerHTML = `Tesss <input type="number" placeholder="Lebar" id="aaa" onkeyup="document.getElementById('HSL_V3').innerText = this.value;">`;
+        //  document.write(`tes`);
+        //  var HasilHitungV = PanjangBalok.value * LebarBalok.value * TinggiBalok.value;
+        tombol.innerHTML = `<button id="tombol_v" onclick="tklik()">klik</button>`;  
+        // console.log(`Hasil: ${PanjangBalok.target.value}`);
+      //  hslv.innerHTML = PanjangBalok.target.value;
+      }
+      function tklik(b){
+        // document.write(PanjangBalok.value + TinggiBalok.value + LebarBalok.value); 
+        console.log(document.querySelector('#HSL_V1'));
+        hslv.addEventListener("change", function(b){
+        testv.innerHTML= `nilai 1 : ${b.value} `;
+    });
+      }
+
+      console.log(document.querySelector('#HSL_V1'));
+
+      function B(){
+        var prompt1 = prompt('Panjang');
+        var prompt2 = prompt('lebar');
+        var prompt3 = prompt('Tinggi');
+        
+        console.log(prompt1*prompt2*prompt3);
+      }
+
+      function C(){
+        var promt = confirm('Diameter / jari-jari')
+     if(promt){
+        var promptc1 = confirm(' 22/7 - 3.14');
+        var promptc2 = prompt('Diameter Lingkaran');
+        if(promptc1){
+            console.log(22/7*promptc2);
+        }else{
+            console.log(3.14*promptc2);
+        }
+    }else{
+        var promptc11 = confirm('22/7 - 3.14');
+        var promptc22 = prompt('Diameter Lingkaran');
+        if(promptc11){
+            console.log(2*22/7*promptc22);
+        }else{
+            console.log(2*3.14*promptc22);
+        }      
+    }
+        // var prompt3 = prompt('');
+      }
+</script>
+<br><br>
+<div id="inf"></div>
+<select name="ssr" id="ssr">
+    <option >Apel</option>
+    <option >Mangga</option>
+    <option >Jeruk</option>
+</select>
+
+<script>
+    const inf = document.getElementById('inf');
+    const bua = document.getElementById('ssr');
+
+    bua.addEventListener("change", function(a){
+        inf.innerText = `Anda Memilih: ${a.target.value} `;
+    });
+</script>
+
+<p>____________________________________</p>
+<!-- q -->
+<button id="btn1" 
+       onclick="gantiWarna2()"
+       onkeyup="gantiWarna3()"
+       onmouseover="ubahText()"
+       onmouseout="oriText()">K</button>
+<button>klik saya 2</button>
+
+<script>
+    const body = document.body;
+    const btn1 = document.getElementById('btn1');
+    const btn22 = document.querySelector('button');
+    
+    const defaultText = 'klik sayaa';
+    btn1.textContent = defaultText;
+
+    btn1.style.border = '1px solid black';
+    btn1.style.padding = '8px';
+    btn1.style.fontSize = '24px';
+    btn1.style.background = 'tomato';
+
+    function gantiWarna2(){
+        btn1.style.background = 'aqua';
+        const newText = document.createElement('p');
+        newText.textContent = 'bro';
+        body.append(newText); 
+    }
+    function gantiWarna3(){
+        btn1.style.background = "tomato";
+    }
+    function ubahText(){
+        btn1.textContent = 'text berubah';
+    }
+    function oriText(){
+        btn1.textContent = defaultText;
+    }
+</script>
+<p>____________________________________</p>
+<!-- Key Down -->
+<h1 id="downn">Menekan: ....?</h1>
+ <script>
+    const kd = document.getElementById("downn");
+
+    document.addEventListener("keydown", function(a){
+       var tes = kd.innerText = `Menekan: ${a.key}`;
+    if(tes == 'Menekan: ArrowUp'){
+        alert('nice');
+        let tmbh = [tes,'tes']
+        console.log(tes);
+        console.log(tmbh);
+       let margin = tmbh.length + 10;
+        kd.style.color = 'red';
+        kd.style.fontFamily = 'sans-serif';
+        kd.style.marginLeft = `${margin}px`;
+        kd.style.marginBottom = '80px';
+    }else if(tes === 'Menekan: ArrowDown'){
+        kd.style.marginTop = '80px';
+    }else if(tes === `Menekan: Backspace`){
+         kd.innerText = '';
+    }else if(tes == 'Menekan: ArrowRight'){
+        kd.style.marginLeft = '20px';
+        let mmm = arrayKey = [''];
+         arrayKey.push(tes)
+         console.log(mmm);
+        // let tesArray = body.append(mmm);
+        //   body.append(tesArray)
+    }
+    else{
+        kd.style.color = 'black';
+        kd.style.marginLeft = '0px';
+    }
+    });
+
+</script>
+<!-- x -->
+<hr>
+<script   src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script type="text/javascript">
+    function getStates(value) {
+        $.post("mypage.php", {partialState: value}, function (data) {
+            $("#results").html(data);
+        });
+    }
+</script>
+<input type="text" onkeyup="getStates(this.value)" />
+        <br>
+        <div id="results"></div>
+
+        <!-- 5-6-23 -->
+        <button class="kembali" id="">backk</button>
+
+        <script>
+            var kembali = document.querySelector(".kembali");
+
+            kembali.addEventListener("click", function(z){
+                alert("d");
+                window.history.forward();
+            })
+        </script>
+        <!-- 6-6-23 -->
+        <br>
+        <span id="jm2"></span>
+        <button id="setTimeout">setTimeout</button>
+<br>
+        <script>
+            console.log("6-6-23");
+            setInterval(myTimer, 1000);
+
+            function myTimer(){
+                const date = new Date();
+                document.getElementById("jm2").innerHTML = date.toLocaleTimeString();
+            }
+            //   
+            // setTimeout(increment, 4000);
+            let ce = 0;
+
+            function increment(){
+                ce++;
+                console.log(ce);
+            }
+
+           const intervalID = setInterval(function(){
+                increment();
+                if(ce === 5){
+                    clearInterval(intervalID);
+                    console.log("end");
+                }
+            }, 4000)
+
+           // 
+            
+           const timerID = setTimeout(function(){
+             console.log('ppp');
+             document.getElementById("jm2").style.color = 'white';
+             document.getElementById("jm2").style.background = 'gray';
+           }, 10000);
+           
+            const off = document.getElementById('setTimeout');
+            off.addEventListener('click', function(){
+                clearTimeout(timerID);
+                clearInterval(intervalID);
+                console.log("off");
+            })
+            //----
+           
+        </script>
+
+        <br>
+        <hr>
+        <br><br>
+    <script src="main.js"></script>
+</body>
+</html>         
