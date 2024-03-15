@@ -1,0 +1,27 @@
+// -->[ , , List] //
+// ============================ //
+1.classList:
+-classList adalah objek yang menyediakan metode untuk menambah, 
+  menghapus, dan memeriksa keberadaan kelas pada elemen.
+-Metode add(class): Menambah kelas baru ke elemen.
+-Metode remove(class): Menghapus kelas dari elemen.
+-Metode toggle(class): Mengubah keberadaan kelas pada elemen; jika 
+  kelas sudah ada, maka akan dihapus, dan jika tidak, maka akan ditambahkan.
+-Metode contains(class): Memeriksa apakah elemen memiliki kelas tertentu.
+-Contoh penggunaan: element.classList.add('nama-kelas'), 
+  element.classList.remove('nama-kelas'), dst.
+
+2.className:
+-className adalah properti yang digunakan untuk mendapatkan atau
+   menetapkan daftar kelas pada elemen sebagai string.
+-Jika Anda mengatur nilai className, itu akan mengganti semua 
+  kelas yang ada pada elemen dengan kelas yang baru.
+-Contoh penggunaan: element.className = 'nama-kelas-1 nama-kelas-2'.
+/// -- ///
+ var ul = document.getElementById('ul');
+ ul.addEventListener('click', function(event){
+            if(event.target.classList.contains("edit")){
+                var listItem = event.target.parentElement;
+- (event) bisa disebut variabel yang minyimpan fungsi onclick yang 
+ bisa digunakan mengakses properti atau metode
+/// -- ///

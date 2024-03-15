@@ -231,24 +231,32 @@
             jumlahList[i].appendChild(span);
         }
         // === /end/ Tambah Edit ===//
+        // ----------
+        // === Fungsi Edit === //
         var ul = document.getElementById('ul');
+        // (event) menyimpan fungsi onclick yang bisa digunakan mengakses properti atau metode
         ul.addEventListener('click', function(event){
             if(event.target.classList.contains("edit")){
-                var listItem = event.target.parentElement;
+                // listItem =  mengambil elemen li
+                var listItem = event.target.parentElement;  
                 console.log(listItem)
-        var text = listItem.firstChild.textContent.trim();
-        var newValue = prompt('Edit list:', text);
+                // -listItem: mengambil elemen li.
+                // -firstChild: mengambil elemen pertama dari elemen li yaitu textNode / 
+                //      text, urutannya : 1.text(turu)-> 2.isi span(E)-> 3.isi span(\u00D7)
+                // -textContent mengambil hanya teks / tulisan
+                // -trim(): menghapus spasi kosong dari input sebelum memeriksa apakah itu kosong atau tidak. intinya menghapus spaasi
+                var text = listItem.firstChild.textContent.trim(); 
+                var newValue = prompt('Edit list:', text);
+            if(newValue !== null){
+                // ambil li.elemen pertama: textNode.textContent.mengambil teks = "nilai baru"
+                // mengubah nilai yang di ambil textContent dari li yang sudah di tentukan elemen ke
+                // berapa oleh firstChild 
+                listItem.firstChild.textContent = newValue;
+                alert(newValue);
+            }
             }
         })
-        // cara 2: //
-        // var ambilEdit = document.getElementsByClassName('edit');
-
-        // for(var i = 0; i < ambilEdit.length; i++){
-        //     ambilEdit[i].onclick = function () {
-        //         alert(i);
-        //         console.log(ambilEdit[i])
-        //     }
-        // }
+            // === /end/ Fungsi Edit ===//    
        </script>
 </body>
 </html>
