@@ -24,4 +24,41 @@
                 var listItem = event.target.parentElement;
 - (event) bisa disebut variabel yang minyimpan fungsi onclick yang 
  bisa digunakan mengakses properti atau metode
-/// -- ///
+/// --- ========= --- ///
+
+select name="" id="opsii">
+    <option >1</option>
+    <option >2</option>
+    <option >3</option>
+</select>
+<h1 id="tesW"></h1>
+var arrayWaktu = [
+        { timeZone: 'Asia/Jakarta' },
+        { timeZone: 'Asia/Riyadh' },
+        { timeZone: 'Europe/London' },
+        { timeZone: 'Europe/Moscow' },
+        ];
+        document.getElementById('opsii').addEventListener('change', (a) => {
+             // Menggunakan parseInt untuk mengonversi string ke integer
+            //  Menggunkan a.target.value, Tidak perlu mengisi value=" " di <opsi>
+        let opsi = parseInt(a.target.value);
+        console.log(opsi);
+        document.getElementById('tesW').innerText = arrayWaktu[opsi].timeZone || "err"; // Menampilkan arrayWaktu[opsi] atau string kosong jika arrayWaktu[opsi] tidak ada
+        console.log(now.toLocaleString('en-US', arrayWaktu[opsi]));
+        })
+
+       // ? template literals  --
+        ${a.target.value} adalah contoh penggunaan template literals dalam JavaScript. 
+        Template literals memungkinkan Anda menyisipkan nilai variabel atau ekspresi ke 
+        dalam string. Contoh:
+        const nama = 'John';
+        console.log(`Halo, ${nama}!`);
+
+/// --- ========= --- ///
+
+    // ? js Timing Events --
+    -setTimeout(function, milliseconds)
+      Menjalankan suatu fungsi, setelah menunggu beberapa milidetik tertentu.
+    -setInterval(function, milliseconds)
+      Sama seperti setTimeout(), tetapi mengulangi eksekusi fungsi secara terus menerus.
+    https://www.w3schools.com/js/js_timing.asp
