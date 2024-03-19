@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jam</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        .container-1{
+            display: flex;
+            justify-content: center;
+            align-items: center;   
+            z-index: 100;     
+            margin-bottom: 0;    
+        }
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            border-radius: 4px;
+            width: 14rem;
+            padding: 10px;
+            color: white;
+            background-color: #189fff;
+            font-family: supercell-magic,sans-serif;
+        }
+        .kotak{
+            letter-spacing: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* gap:2px; */
+            /* border: 2px solid black; */
+            width: 90px;
+            padding: 5px;
+        }
+        /* .kotak::after{
+            content: ':';
+        } */
+        
+        #tesJam::before{
+            content: '-';
+            margin: 0 5px 0 0;
+        }
+        #tesJam::after{
+            content: ':';
+            margin: 0 0 0 15px;
+        }
+        #tesJam2::before{
+            content: " ";
+            margin: 0 5px 0 0;
+        }
+        #tesJam2::after{
+            content: ':';
+            margin: 0 0 0 15px;
+        }
+        #tesJam3::before{
+            content: " ";
+            margin: 0 5px 0 0;
+        }
+        #tesJam3::after{
+            content: '-';
+            margin: 0 0 0 5px;
+        }
+        /* TGL */
+        .container-2{
+            font-family: sans-serif;
+            display: flex;
+            top: 5px;
+            margin-top: 50px;
+        }
+        .content{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2px;
+            border-radius: 4px;
+            padding: 10px;
+            color: white;
+            background-color: #37ff18;
+            font-family: supercell-magic,sans-serif;
+        }
+        .kotak-hari{
+            letter-spacing: 2px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* border: 2px solid black; */
+            /* width: 90px; */
+            padding: 5px;
+        }
+        /* Hari */
+        .container-3{
+            display: flex;
+            justify-content: center;
+            align-items: center;   
+            margin-top: -35px;
+            z-index: 100;     
+        }
+        .kotak-hari2{
+            width: 12rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 4px;
+            padding: 10px;
+            color: white;
+            background-color: #ff1818;
+            font-family: supercell-magic,sans-serif;
+        }
+        /* Bulan */
+        .container-4{
+            display: flex;
+            justify-content: center;
+            align-items: center;   
+            margin-top: 10px;
+            z-index: 100;     
+        }
+        .kotak-bulan{
+            width: 12rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 4px;
+            padding: 10px;
+
+            color: white;
+            background-color: #ffcd18;
+            font-family: supercell-magic,sans-serif;
+        }
+        /* ==== Jam Analog ==== */
+    .jam_analog_malasngoding {
+		background: #e7f2f7;
+		/* position: relative; */
+		width: 210px;
+		height: 210px;
+		border: 16px solid #52b6f0;
+		border-radius: 50%;
+		padding: 20px;
+		/* margin:20px auto; */
+	}
+ 
+	.xxx {
+		height: 100%;
+		width: 100%;
+		position: relative;
+	}
+ 
+	.jarum {
+		position: absolute;
+		width: 50%;
+		background: #232323;
+		top: 50%;
+		transform: rotate(90deg);
+		transform-origin: 100%;
+		transition: all 0.05s cubic-bezier(0.1, 2.7, 0.58, 1);
+	}
+ 
+	.lingkaran_tengah {
+		width: 24px;
+		height: 24px;
+		background: #232323;
+		border: 4px solid #52b6f0;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-left: -14px;
+		margin-top: -14px;
+		border-radius: 50%;
+	}
+ 
+	.jarum_detik {
+		height: 2px;
+		border-radius: 1px;
+		background: #F0C952;
+	}
+ 
+	.jarum_menit {
+		height: 4px;
+		border-radius: 4px;
+	}
+ 
+	.jarum_jam {
+		height: 8px;
+		border-radius: 4px;
+		width: 35%;
+		left: 15%;
+	}
+    </style>
+</head>
+<body> <!-- onload="waktu()" -->
+<div class="divv" style=" 
+                        position:fixed; padding: 10px; height: 100vh;
+                        box-shadow: 8px 0px 7px -4px rgba(0,0,0,0.75);
+                        -webkit-box-shadow: 8px 0px 7px -4px rgba(0,0,0,0.75);
+                        -moz-box-shadow: 8px 0px 7px -4px rgba(0,0,0,0.75);">
+
+    <div class="" style="display: flex;
+    gap:15px;"> <!--  justify-content: ; -->
+ <!-- --------- -->
+     <div class="container-1">
+         <div class="container">
+             <div class="kotak">
+                 <h4 id="tesJam"></h4>
+             </div>
+             <!-- : -->
+             <div class="kotak">
+                 <h4 id="tesJam2"></h4>
+             </div>
+             <div class="kotak">
+                 <h4 id="tesJam3"></h4>
+             </div>
+         </div>
+     </div>
+ 
+     <div class="container-2">
+         <div class="content">
+             <div class="kotak-hari">
+                 <h4 id="hari"></h4>
+             </div>-
+             <div class="kotak-hari">
+                 <h4 id="hari2"></h4>
+             </div>-
+             <div class="kotak-hari">
+                 <h4 id="hari3"></h4>
+             </div>
+         </div>
+     </div>
+ <!-- ------- -->
+    </div>
+ 
+    <div class="" style="display: flex;gap:15px;"> 
+    <!-- hari -->
+    <div class="container-3">
+     <div class="content-3">
+         <div class="kotak-hari2">
+             <h4 id="hari-1"></h4>
+         </div>
+     </div>
+    </div>
+    <!-- bulan -->
+    <div class="container-4">
+     <div class="content-4">
+         <div class="kotak-bulan">
+             <h4 id="bulann"></h4>
+         </div>
+     </div>
+    </div>
+ </div>
+ <!-- ===== timeZone ====== -->
+ <select name="" id="opsii">
+     <option value="0">Indonesia, Jakarta</option>
+     <option value="1">Amerika, New York</option>
+     <option value="2">Arab, Riyadh</option>
+     <option value="3">Finlandia, Helsinki </option>
+     <option value="4">India, Kolkata</option>
+     <option value="5">Inggirs, London</option>
+     <option value="6">Jepang, Tokyo </option>
+     <option value="7">Rusia, Moskow</option>
+ </select><br>
+ <span id="tesW"></span>
+ <!-- / -->
+</div>
+<!-- //end -->
+<br> <!-- <<== bisa tag apapun -->
+<div class="divvv" style="margin-left: 40px; margin-top:50% ;"> <!-- <<==margin-top menjauh dari tag <br> bukan dari <body>-->
+    <div class="jam_analog_malasngoding">
+        <div class="xxx">
+            <div class="jarum jarum_detik"></div>
+            <div class="jarum jarum_menit"></div>
+            <div class="jarum jarum_jam"></div>
+            <div class="lingkaran_tengah"></div>
+        </div>
+    </div>
+</div>
+
+<!--  cuma pengen lihat rotate -->
+<!--  const secondsDegrees = ((seconds / 60) * 360) + 90; <<== rotate:90 width/panjang di ubah ke atas-->
+<!-- secondHand.style.transform = `rotate(${secondsDegrees}deg)`; -->
+<div style=" margin:20px 0 50px 40px; height: 2px; background: black;width: 50px;
+transform: rotate(90deg);"></div>
+<!-- /// -->
+
+<div class="div2" style="float:right; width: 60% ;
+/* background-color: rebeccapurple; */
+                        top: 1px;right: 1px ;position:absolute; ">
+    <center>
+        hhhh
+    </center>
+    <img src="https://i.pinimg.com/564x/7b/1c/45/7b1c4523594c84d5e11775ffbebd87ea.jpg" alt="">
+    <h4>Scroll  </h4>
+</div>
+    <Script>
+        // ? js Timing Events 1.txt
+        window.setTimeout(waktu,1000);
+        
+        function waktu(){
+        // mengambil waktu
+            var date2 = new Date();
+        //  - Simpan sebagai array agar..., gak tau pengen nyimpan aja ke 
+        //   array. Di atribut value="" tag <opsi> JUGA BISA. Contoh= jam2.html
+        //  - struktur data array
+    var arrayWaktu1 = [ 
+    // - struktur data objek
+        { timeZone: 'Asia/Jakarta' },
+        { timeZone: 'America/New_York' },
+        { timeZone: 'Asia/Riyadh' },
+        { timeZone: 'Europe/Helsinki' },
+        { timeZone: 'Asia/Kolkata' },
+        { timeZone: 'Europe/London' },
+        { timeZone: 'Asia/Tokyo' },
+        { timeZone: 'Europe/Moscow' }, 
+    ];
+    
+    var opsi = parseInt(document.getElementById('opsii').value); 
+    document.getElementById('tesW').innerText = arrayWaktu1[opsi].timeZone || "err";
+
+    // Mengambil zona waktu yang dipilih atau menggunakan zona waktu default ('Asia/Jakarta')
+    var ubahWaktuu = date2.toLocaleString('en-US', arrayWaktu1[opsi]) || date2.toLocaleString('en-US', {timeZone: 'Asia/Jakarta'});
+    // mengubah new Date( ke zona waktu yang dipilih dipilih )
+    var waktuu = new Date(ubahWaktuu);
+    // console.log('waktu: ' + waktuu);
+
+        // Set ulang timeout untuk memanggil fungsi waktu setiap detik
+        setTimeout(waktu, 1000);
+
+        // var waktu3 = new Date(ubahWaktuu);
+            // var waktuu = new Date();
+
+            document.getElementById('tesJam').innerHTML  = waktuu.getHours();
+            document.getElementById('tesJam2').innerHTML = waktuu.getMinutes();
+            document.getElementById('tesJam3').innerHTML = waktuu.getSeconds();
+
+            document.getElementById('hari').innerHTML  = waktuu.getFullYear();
+            document.getElementById('hari2').innerHTML = waktuu.getMonth()+1; // dari index //
+            document.getElementById('hari3').innerHTML = waktuu.getDate();    // dari index //
+            // hari
+            if(waktuu.getDay() === 0){
+                document.getElementById('hari-1').innerHTML = "Minggu"
+            }else if(waktuu.getDay() === 1){
+                document.getElementById('hari-1').innerHTML = "Senin"
+            }else if(waktuu.getDay() === 2){
+                document.getElementById('hari-1').innerHTML = "Selasa"
+            }else if(waktuu.getDay() === 3){
+                document.getElementById('hari-1').innerHTML = "Rabu"
+            }else if(waktuu.getDay() === 4){
+                document.getElementById('hari-1').innerHTML = "Kamis"
+            }else if(waktuu.getDay() === 5){
+                document.getElementById('hari-1').innerHTML = "Jumat"
+            }else if(waktuu.getDay() === 6){
+                document.getElementById('hari-1').innerHTML = "Sabtu"   
+            }
+            // --- bulan --- //
+            if(waktuu.getMonth() === 0){
+                document.getElementById('bulann').innerHTML = "Januari"
+            }else if(waktuu.getMonth() === 1){
+                document.getElementById('bulann').innerHTML = "Februari"
+            }else if(waktuu.getMonth() === 2){
+                document.getElementById('bulann').innerHTML = "Maret"
+            }else if(waktuu.getMonth() === 3){
+                document.getElementById('bulann').innerHTML = "April"
+            }else if(waktuu.getMonth() === 4){
+                document.getElementById('bulann').innerHTML = "Mei"
+            }else if(waktuu.getMonth() === 5){
+                document.getElementById('bulann').innerHTML = "Juni"
+            }else if(waktuu.getMonth() === 6){
+                document.getElementById('bulann').innerHTML = "Juli"   
+            }else if(waktuu.getMonth() === 7){
+                document.getElementById('bulann').innerHTML = "Agustus"
+            }else if(waktuu.getMonth() === 8){
+                document.getElementById('bulann').innerHTML = "September"
+            }else if(waktuu.getMonth() === 9){
+                document.getElementById('bulann').innerHTML = "Oktober"
+            }else if(waktuu.getMonth() === 10){
+                document.getElementById('bulann').innerHTML = "November"
+            }else if(waktuu.getMonth() === 11){
+                document.getElementById('bulann').innerHTML = "Desember"
+            }
+
+    //     }
+
+            // ======== Jam Analog ===========//
+   
+	// function setDate(){
+
+        const secondHand = document.querySelector('.jarum_detik');
+	const minuteHand = document.querySelector('.jarum_menit');
+	const jarum_jam = document.querySelector('.jarum_jam');
+		// const now = new Date();
+ 
+		const seconds = waktuu.getSeconds();
+		const secondsDegrees = ((seconds / 60) * 360) + 90;
+        // ? template literals 1.txt
+		secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+		if (secondsDegrees === 90) {
+			secondHand.style.transition = 'none';
+		} else if (secondsDegrees >= 91) {
+			secondHand.style.transition = 'all 0.05s cubic-bezier(0.1, 2.7, 0.58, 1)'
+		}
+ 
+		const minutes = waktuu.getMinutes();
+		const minutesDegrees = ((minutes / 60) * 360) + 90;
+		minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+ 
+		const hours = waktuu.getHours();
+		const hoursDegrees = ((hours / 12) * 360) + 90;
+		jarum_jam.style.transform = `rotate(${hoursDegrees}deg)`;
+	}
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // tes ///
+// var options = { timeZone: 'America/New_York' };
+// var formatter = new Intl.DateTimeFormat('en-US', options);
+// var timeInNewYork = formatter.format(now);
+
+// console.log('Waktu di New York: ' + timeInNewYork + " " + now+ " "+formatter);
+
+// var now = new Date();
+// var timeString = now.toLocaleString('en-US', { timeZone: 'America/Vancouver' });
+// var jam = timeString.split(',')[1].trim(); 
+// console.log(jam);
+    </Script>
+</body>
+</html>
