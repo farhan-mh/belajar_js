@@ -8,8 +8,8 @@
 	<style type="text/css">
  
 	h1,h2,p,a{
-		font-family: sans-serif;
-		font-weight: normal;
+		/* font-family: sans-serif;
+		font-weight: normal; */
 	}
  
 	.jam_analog_malasngoding {
@@ -52,47 +52,82 @@
 		border-radius: 50%;
 	}
  
-	.jarum_detik {
+	.jarum_detik2 {
 		height: 2px;
-		border-radius: 1px;
-		background: #F0C952;
+		border-radius: 1px; 
+		 background: #F0C952;
 	}
  
-	.jarum_menit {
-		height: 4px;
-		border-radius: 4px;
+	 .jarum_menit2 {
+		 height: 4px;
+		border-radius: 4px; 
 	}
  
-	.jarum_jam {
+	#jarum_jam2 {
 		height: 8px;
 		border-radius: 4px;
 		width: 35%;
 		left: 15%;
 	}
+	.jarum_jam {
+		left: -2%;
+	}
 </style>
  
- 
- 
+
 <div class="jam_analog_malasngoding">
 	<div class="xxx">
-		<div class="jarum jarum_detik"></div>
-		<div class="jarum jarum_menit"></div>
-		<div class="jarum jarum_jam"></div>
+		<div class="jarum jarum_detik">
+			<div style="gap: 30px;  position: absolute; margin-right: 57px;color: green;"> < </div>
+			<span style="display: flex;position: absolute;margin-left: 7px;" id="jDetik2"></span> 
+			<span style="display: flex;position: absolute; margin-left: 27px;" id="jDetik3"></span>
+			<span style="display: flex;position: absolute; margin-left: 47px;" id="jDetik4"></span>
+			<span style="display: flex;position: absolute; margin-left: 67px;" id="jDetik5"></span>
+			<span style="display: flex;position: absolute; margin-left: 87px;" id="jDetik6"></span>
+		</div>
+		<div class="jarum jarum_menit">
+			<span style="display: flex;position: absolute;margin-left: 7px;" id="jMenit1"></span> 
+			<span style="display: flex;position: absolute; margin-left: 27px;" id="jMenit2"></span>
+			<span style="display: flex;position: absolute; margin-left: 47px;" id="jMenit3"></span>
+			<span style="display: flex;position: absolute; margin-left: 67px;" id="jMenit4"></span>
+			<span style="display: flex;position: absolute; margin-left: 87px;" id="jMenit5"></span>
+		</div>
+		<div class="jarum jarum_jam">
+			<span style="display: flex;position: absolute;margin-left: 7px;" id="jJam1"></span> 
+			<span style="display: flex;position: absolute; margin-left: 27px;" id="jJam2"></span>
+			<span style="display: flex;position: absolute; margin-left: 47px;" id="jJam3"></span>
+			<span style="display: flex;position: absolute; margin-left: 67px;" id="jJam4"></span>
+			<span style="display: flex;position: absolute; margin-left: 87px;" id="jJam5"></span>
+		</div>
 		<div class="lingkaran_tengah"></div>
 	</div>
 </div>
  <br><br>
 <center>
-    <div
-style="
-height: 2px; 
-background: black;
-width: 20px;
-transform: rotate(90deg);
-"
-></div>
+	<div class="jam_analog_malasngoding">
+		<div class="xxx">
+		<div id="jDetik" class="jarum jarum_detik jarum_detik2"
+			style="
+			/* height: 2px; 
+			background: black;
+			width: 120px; */
+			/* transform: rotate(10deg);  */
+			/* display: flex; */
+		
+			/* Menjadikan posisi relatif agar child element dapat diatur */
+			/* position: relative;  */
+			">
+			<!-- <span style="display: flex;position: absolute; margin-left: 97px;" id="jDetik7">12</span> -->
+		</div>
+		<div class="jarum jarum_menit jarum_menit2" id="jarum_menit2"></div>
+		<div class="jarum jarum_jam jarum_jam2" id="jarum_jam2"></div>
+		<div class="lingkaran_tengah"></div>
+	</div>
+</div>
+    
 </center>
 <br><br><br>
+
 <select name="" id="opsii">
      <option value="Asia/Jakarta">Indonesia, Jakarta</option>
      <option value="America/New_York">Amerika, New York</option>
@@ -110,17 +145,16 @@ transform: rotate(90deg);
 </center>
  
  
+<!-- tes -->
 <script type="text/javascript">
 	const secondHand = document.querySelector('.jarum_detik');
 	const minuteHand = document.querySelector('.jarum_menit');
 	const jarum_jam = document.querySelector('.jarum_jam');
  
 	function setDate(){
-
             // mengambil waktu
             var date2 = new Date();
     //simpan sebagai array agar..., gak tau pengen nyimpan ke array aja. Di atribut value="Majapahit/TrowulanJatim" tag opsi juga bisa
-    //
     var arrayWaktu1 = [ 
         // { timeZone: 'Asia/Jakarta' },
         // { timeZone: 'America/New_York' },
@@ -131,37 +165,94 @@ transform: rotate(90deg);
         // { timeZone: 'Asia/Tokyo' },
         // { timeZone: 'Europe/Moscow' }, 
     ];
-    
     var opsii = document.getElementById('opsii');
     var opsi = opsii.value; // Mengambil nilai value dari elemen select
-    console.log(opsi);
-
+    // console.log(opsi);
     document.getElementById('tesW').innerText = opsi || "err";
 
     // Mengubah Date ke zona waktu yang dipilih atau menggunakan zona waktu default ('Asia/Jakarta')
     var ubahWaktuu = date2.toLocaleString('en-US', { timeZone: opsi }) || date2.toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
     var waktuu = new Date(ubahWaktuu);
     // console.log('waktu: ' + waktuu);
-
-
+		let span_detik = document.getElementById('span_detik');
 		const now = new Date(ubahWaktuu);
  
+		// ================== DETIK =================== //
 		const seconds = now.getSeconds();
 		const secondsDegrees = ((seconds / 60) * 360) + 90;
 		secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+		jDetik.style.transform = `rotate(${secondsDegrees}deg)`;
+		
+		// Atur rotasi untuk angka agar tetap vertikal
+		// Untuk membuat angka tetap vertikal, gunakan negatif dari sudut rotasi jarum detik
+		let angle = -secondsDegrees; 
+		document.getElementById('jDetik2').style.transform = `rotate(${angle}deg)`;
+		document.getElementById('jDetik3').style.transform = `rotate(${angle}deg)`;
+		document.getElementById('jDetik4').style.transform = `rotate(${angle}deg)`;
+		document.getElementById('jDetik5').style.transform = `rotate(${angle}deg)`;
+		document.getElementById('jDetik6').style.transform = `rotate(${angle}deg)`;
+
+		// Menampilan angka detik
+		// document.getElementById('jDetik2').innerHTML = seconds;
+		document.getElementById('jDetik3').innerHTML = seconds;
+		document.getElementById('jDetik4').innerHTML = seconds;
+		document.getElementById('jDetik5').innerHTML = seconds;
+		document.getElementById('jDetik6').innerHTML = seconds;
+        
+		
+    	// ????? //    
 		if (secondsDegrees === 90) {
 			secondHand.style.transition = 'none';
+			jDetik2.style.transition = 'none';
 		} else if (secondsDegrees >= 91) {
 			secondHand.style.transition = 'all 0.05s cubic-bezier(0.1, 2.7, 0.58, 1)'
+			jDetik2.style.transition = 'all 0.05s cubic-bezier(0.1, 2.7, 0.58, 1)'
 		}
- 
+        
+		// ============  MENIT  =========== //
 		const minutes = now.getMinutes();
 		const minutesDegrees = ((minutes / 60) * 360) + 90;
 		minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+		document.getElementById('jarum_menit2').style.transform = `rotate(${minutesDegrees}deg)`;
+		// Atur rotasi untuk angka agar tetap vertikal
+		// Untuk membuat angka tetap vertikal, gunakan negatif dari sudut rotasi jarum
+		let vertikalMenit = -minutesDegrees;
+		
+		document.getElementById('jMenit1').style.transform = `rotate(${vertikalMenit}deg)`;
+		document.getElementById('jMenit2').style.transform = `rotate(${vertikalMenit}deg)`;
+		document.getElementById('jMenit3').style.transform = `rotate(${vertikalMenit}deg)`;
+		document.getElementById('jMenit4').style.transform = `rotate(${vertikalMenit}deg)`;
+		document.getElementById('jMenit5').style.transform = `rotate(${vertikalMenit}deg)`;
+
+		// Menampilkan angka menit
+		document.getElementById('jMenit1').innerHTML = minutes;
+		document.getElementById('jMenit2').innerHTML = minutes;
+		document.getElementById('jMenit3').innerHTML = minutes;
+		document.getElementById('jMenit4').innerHTML = minutes;
+		document.getElementById('jMenit5').innerHTML = minutes;
  
+		// ================ JAM ===============//
 		const hours = now.getHours();
 		const hoursDegrees = ((hours / 12) * 360) + 90;
 		jarum_jam.style.transform = `rotate(${hoursDegrees}deg)`;
+		document.getElementById('jarum_jam2').style.transform = `rotate(${hoursDegrees}deg)`;
+		// Atur rotasi untuk angka agar tetap vertikal
+		// Untuk membuat angka tetap vertikal, gunakan negatif dari sudut rotasi jarum
+		let vertikalJam = -hoursDegrees;
+		
+		document.getElementById('jJam1').style.transform = `rotate(${vertikalJam}deg)`;
+		document.getElementById('jJam2').style.transform = `rotate(${vertikalJam}deg)`;
+		document.getElementById('jJam3').style.transform = `rotate(${vertikalJam}deg)`;
+		document.getElementById('jJam4').style.transform = `rotate(${vertikalJam}deg)`;
+		document.getElementById('jJam5').style.transform = `rotate(${vertikalJam}deg)`;
+
+		// Menampilkan angka jam
+		document.getElementById('jJam1').innerHTML = hours;
+		document.getElementById('jJam2').innerHTML = hours;
+		document.getElementById('jJam3').innerHTML = hours;
+		document.getElementById('jJam4').innerHTML = hours;
+		document.getElementById('jJam5').innerHTML = hours;
+ 
 	}
  
     // ? js Timing Events
