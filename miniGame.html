@@ -14,12 +14,17 @@
             height: 100vh;
         }
         .summary{
-            display: flex;
+            margin: 15px auto;
+            border: 2px solid blanchedalmond;
+            width: 400px;
+            height: 450px;
+        }
+        .matchResult{
+          display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            margin: 0 auto;
-            border: 2px solid blanchedalmond;
+            margin: 15px auto;
             width: 400px;
             height: 450px;
         }
@@ -46,16 +51,51 @@
             transition: 0.2s ease-in-out;
             transform: scale(110%);
         }
-
+       .player{
+         width: 100%;
+         /*background-color: black;*/
+         display: flex;
+         top: 1;
+         margin: 0 0;
+         position: relative;
+         justify-content: space-evenly;
+       }
+       #player1{
+         margin: 15px 20px;
+         /* display: block;
+         background-color: white;
+         position: absolute;
+         left: 0; */
+       }
+       .vs{
+         margin: 15px 20px;
+       }
+       #bot1{
+         margin: 15px 20px;
+      /*display: block;
+        position:absolute;
+        right: 0; */
+       background-color: green;
+       }
+       
     </style>
 </head>
 <body>
-    <!-- ✊🖐✌ -->
+   <!--#2-->
+    <!-- ✊🖐✌ -- >
     <div id="app">
+      <input type="text" id="namaPlayer" placeholder="Nama Player">
         <div class="summary">
-            <h1 class="title">Match result</h1>
-            <h2 id="inGame"></h2>
-            <h3 id="result"></h3>
+           <div class="player">
+             <h2 id="player1"></h2>
+             <h2 class="vs">vs</h2>
+             <h2 id="bot1"></h2>
+           </div>
+            <div class="matchResult">
+              <h1 class="title">Match result</h1>
+              <h2 id="inGame"></h2>
+              <h3 id="result"></h3>
+            </div>
         </div>
         <div class="games">
                 <div onclick="pickOption('✊')" class="option">✊</div>
@@ -65,37 +105,46 @@
     </div>
 
     <script>
+    
         class start{
             constructor(){
                 this.playerName = "F M H";
                 this.botName = "bot";
                 this.botOption;
-                this.playerOption;
-                this.winner = "";
+                this.playerOption ="tes";
+                this.winner = "none";
             }
             // get ndak usah  ???
             get getBotOption(){
                 return this.botOption;
             }
-
+    
             set setBotOption(random){
                 this.botOption = random;
             }
-
+    
             get getPlayerOption(){
                 return this.playerOption;
             }
-
+    
             set setPlayerOption(option){
                 this.playerOption = option;
             }
-
+            
+            set setPlayerName(option){
+              this.playerName = option;
+            }
+            
+            get getPlayerName(){
+              return this.playerName;
+            }
+    
             botBrain(){
                 const option = ["✊", "🖐", "✌"];
                 let generate = option[Math.floor(Math.random() * option.length)];
                 return generate;
             }
-
+    
             win(){
                 if(this.botOption == "🖐" && this.playerOption == "✌"){
                     return this.winner = this.playerName;
@@ -109,6 +158,8 @@
                     return this.winner = this.botName;
                 }else if(this.botOption == "✌" && this.playerOption == "🖐"){
                     return this.winner = this.botName;
+                }else if(this.playerOption === "🖐" && this.botOption ==="✊" ){
+                  return this.winner = this.playerName
                 }else{
                     return this.winner = "Draw";
                 }
@@ -121,8 +172,22 @@
                 }
             }
         }
+        
+       let namaPlayer = document.getElementById("namaPlayer");
+      const strt = new start();
+       namaPlayer.addEventListener('keyup', function(){
+          console.log("Input: ", namaPlayer.value);
+          strt.setPlayerName = namaPlayer.value;
+          if(namaPlayer.value ===""){
+            strt.setPlayerName = "F M H."
+          }
+          console.log("getPlayerName: ", strt.getPlayerName);
+        
+         });
+      //  const strt = new start();
+        
         function pickOption(value){
-             const strt = new start();
+             
              strt.setPlayerOption = value;
              strt.setBotOption = strt.botBrain();
             
@@ -132,15 +197,17 @@
              console.log("bot option: " + strt.botOption);
              console.log("player option :" + strt.playerOption);
              console.log("pemenang :" + strt.winner)
-
+    
              const inGame = document.getElementById('inGame');
              const result = document.getElementById('result');
-
+             const player1 = document.getElementById("player1");
+             const bot1 = document.getElementById("bot1");
+             player1.innerHTML = strt.getPlayerName;
+             bot1.innerHTML = strt.botName;
              //  result.innerHTML = `Player: ${strt.playerOption} VS bot: ${strt.botOption}`;
             //  inGame.textContent = `${strt.playerName} VS ${strt.botName}`
-            
             inGame.textContent = `...`;
-
+    
              setTimeout(() =>{
                 // pleyerOption beda warna 
                 inGame.textContent = `${strt.playerOption} VS ${strt.botOption}`
