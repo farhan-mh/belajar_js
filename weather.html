@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: antiquewhite;
+            background: #1b00ff;
+            background: linear-gradient(214deg,#1b00ff 0%, rgba(119,0,255,0.57) 80%);
+            background: -webkit-linear-gradient(214deg,#1b00ff 0%, rgba(119,0,255,0.57) 80%);
+            background: -moz-linear-gradient(214deg,#1b00ff 0%, rgba(119,0,255,0.57) 80%);
+            background-repeat: no-repeat; /* Agar tidak diulang */
+            background-size: cover; /* Agar mengisi seluruh area */
+            height: 110vh;
+            margin: 0;
+        }
+        .title{
+            font-family: supercell-magic;
+            margin: 15px 0 0 15px;
+            color: rgb(251, 247, 247);
+        }
+        .content{
+         justify-content:  center;
+         align-items: center;
+         display: flex;
+         /* margin: 10rem 0 0 0; */
+         
+         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .content-2{
+            /* border: 1px solid black; */
+            padding: 20px;
+            /* margin: 0; */
+        }
+        .location{
+           
+        }
+        /* #idLocation{
+            width: 0;
+            height: 0;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.8s ease-in-out;
+            opacity: 0;
+            transform: translate(-40%, -55%);
+        } */
+
+        #idLocation-2{         
+            display: inline-block;
+            min-width: 50%;
+            
+            border: 1px ;
+            border-radius: 20px;
+            margin-right: 120px;
+            padding: 10px 25px 10px 25px;
+            color: white;
+            background-color: rgba(40 38 38 / 41%);
+            
+            /* width: 40%; */
+            height: 20%;
+            transition: 1s ease-in-out;
+            opacity: 1;
+        }
+        #idLocation-2 h4{ 
+            margin: 0;
+            display: inline;
+        }
+        #idLocation-2 h6{ 
+            margin: 0;
+            display: inline;
+        }
+        #idTime{
+            transform: translate(-40%, -55%);
+            width: 0;
+            height: 0;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+
+            opacity: 0;
+            transition: 0.8s ease-in-out;
+        }
+        #idTime-2{
+            color: white;
+            font-family: monospace;
+            right: 40px;
+            position: relative;
+            width: 40%;
+            border: 1px ;
+            border-radius: 20px;
+            margin-left: 450px;
+            padding: 10px 0 10px 25px;
+            background-color: rgba(40 38 38 / 41%);
+
+            height: 20%;
+            transition: 1s ease-in-out;
+            opacity: 1;
+        }
+        .condition{
+            margin-top: 5px;
+            margin-bottom: 5px;
+            border-radius: 20px;
+            margin-left: 40px;
+            padding: 10px 0 10px 25px;
+            background-color: rgba(40 38 38 / 41%);
+        }
+
+        #idCondition{
+            height: 0;
+            width: 0;
+            opacity: 0;
+            border: 3px solid red;
+            transition: 0.2s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* position: absolute; left: 50%;; top: 50%;
+            transform: translate(-50%, -50%); */
+        }
+        #tes{
+         height: 350px;
+            /* height: 40%; */
+            /* width: 100%; */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 1s ease-in-out;
+            opacity: 1;
+        }
+        /* #check:checked ~ #idCondition{
+            display: none;
+        } */
+
+        .weather{
+            color: rgba(255, 255, 255, 0.747);
+
+        }
+
+        .degrees{
+            margin-left: 30%;
+            top: -20px;
+        }
+
+        /* contoh: width: auto */
+        .condition-text{
+           background-color:#6c757d7a;
+           padding: 2px 15px 2px 15px;
+           border-radius: 20px 0 20px;
+           width: auto;
+           display: inline-block;
+           width: auto;
+
+           margin: 0 20px ;
+        }
+
+        
+        .status{
+           margin-top: -35px;
+           background-color:#6c757d7a;
+           border-radius: 20px;
+           width: auto;
+           position: relative;
+           padding: 2px 15px 2px 15px;
+        }
+        .status1{
+           margin-top: 25px;
+           background-color:#6c757d7a;
+           border-radius: 20px;
+           width: auto;
+           padding: 2px 15px 2px 15px;
+
+            bottom: 20px;
+        }
+        
+        .textT1{
+            /* display: flex; */
+            position: relative;
+            top: -10px;
+            justify-content: space-between;
+            margin: 5px 20px 5px 20px;
+            color: rgba(255, 255, 255, 0.747);
+        }
+        
+       /*  search */
+       .search-icon{
+            background-color: aliceblue;
+            position: absolute;
+            align-items: center;
+            border: none;
+            border-radius: 10px;
+            width: 35px;
+            height: 35px;
+            z-index: 100;
+            cursor: pointer;
+            /* display: none; */
+       }
+       #checker{
+        cursor: pointer;
+       }
+
+        .search{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            height: 35px;
+            transition: 0.2s ease-out;
+        }
+
+        #keyWord{
+            position: absolute;
+            width: 0;
+            border: red;
+            transition: 0.2s ease-out;
+            z-index: 1;
+            transition: 0.2s ease-out; 
+            
+        }
+
+        #klik{
+            z-index: 5;
+            position: relative;
+            /* right: 0; */
+            background-color: aliceblue;
+            border-radius: 10px;
+            width: 35px;
+            height: 30px;
+            border: none;
+            transition: 0.2s ease-out; 
+        }
+        
+        #check:checked ~ .search #keyWord{
+             /* text-align: center; */
+            padding-left: 25px;
+
+            border: none;
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 20px;
+            height: 35px;
+            width: 300px;
+            transition: 0.2s ease-out;
+
+            border: none;
+            outline: none;
+        /* box-shadow: inset 0 0 0 2px #be3535;  */
+        }
+        #check:checked ~ .search #klik{
+            background-color: aliceblue;
+            position: absolute;
+            margin-left: 255px;
+            border: none;
+            border-radius: 10px;
+            width: 35px;
+            height: 30px;
+        }
+        #check:checked ~ .search .search-icon{
+            display: none;
+        }
+
+        @media (max-width:450px) {
+            body{
+                height: 120vh;
+            }
+            .degrees{
+                margin-left: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            #idTime-2 {
+                margin-left: 0px;
+                float: right;
+                right: 0;
+                width: 170px;
+                margin-top: 120px;
+            }
+            .condition {
+                margin-left: 0;
+            }
+            .status{
+                margin-top: 0;
+                background-color: #2424247a;
+                margin-right: 22px;
+                /* pindah bawah ? */
+
+                z-index: 101;
+                position: absolute;
+                margin-top: 460px;
+            }
+            .status1{
+                text-align: center;
+                display: inline-grid;
+            }
+            #tes{
+                height: 1%;
+            }
+            .container-s{
+                text-align: center;
+            }
+            .condition-text{
+               margin: 0 20px ;
+            }
+        }
+
+    </style>
+</head>
+<body onload="indx()" id="body1">
+<!-- 1 -->
+    <h4 class="title" style="z-index: 90;position: relative;">Weather App</h4>
+
+    <input type="checkbox" name="" id="check" class="d-none">
+    <div  class="search">
+        <input type="text" class="keyWord" id="keyWord" placeholder="Place">
+        <!-- icon -->
+        <button class="search-icon">
+            <label for="check" id="checker">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                </svg>
+            </label>
+        </button>
+        <!-- // icon -->
+        <button  id="klik" >
+            <label>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                </svg>
+            </label>
+        </button>    
+    </div>
+<!-- 2 -->
+    <div class="content">
+        <div class="content-2">
+        <div class="c">
+            <div class="location" id="idLocation" >
+                <h4 id="country"></h5>
+                <br>
+                <h6 id="city"></h6>
+            </div>
+        </div>
+        <!-- <div class="bxx" id="bxx">
+            <h2 id="country">negara</h2>
+            <h4 id="city">kota</h4>
+        </div> -->
+
+        <div class="condition" id="idCondition" >
+            <div class="weather">
+
+                <!--    https://cdn-icons-png.flaticon.com/512/4088/4088981.png  -->
+                <img src="" width="250px" style="object-fit: cover; margin-bottom: 0;" id="weather-icon" alt="">
+                <h2 class="degrees" style="padding-bottom:0 ;"></h2>
+              
+                <!--contoh: width: auto -->
+                <div class="container-s">
+                    <h3 class="condition-text" id="condition-text"></h3>
+                </div>
+            </div>
+            <div class="status">
+                <div class="textT1">
+                    <h3 class="status1" id="vis_km"></h3>
+                    <h3 class="status1" id="humidity"></h3>
+                    <h3 class="status1" id="uv"></h3>
+                    <h3 class="status1" id="wind"></h3>
+                    <!-- <h3 class="time" id="Oclock"></h3> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="time" id="idTime" >
+            <h5 id="date"></h5>
+            <h5 id="Oclock"></h5>
+        </div>
+
+      </div>
+    </div>
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+<polygon fill="#ff9800" points="37,29 42,24 37,19 37,11 29,11 24,6 19,11 11,11 11,19 6,24 11,29 11,37 19,37 24,42 29,37 37,37"></polygon><path fill="#ffeb3b" d="M13,24c0,6.1,4.9,11,11,11c6.1,0,11-4.9,11-11s-4.9-11-11-11C17.9,13,13,17.9,13,24"></path>
+</svg> -->
+    <script>
+
+const button2 = document.getElementById('klik');
+const input = document.getElementById('keyWord');
+
+button2.addEventListener('click', function() {
+  input.classList.toggle('hidden');
+});
+
+        
+        const img = document.getElementById('weather-icon');
+        const countryName = document.getElementById('country');
+        const city = document.getElementById('city');
+        const degrees = document.querySelector(".degrees")
+        const condition = document.getElementById('condition-text');
+        const textVis = document.getElementById('vis_km');
+        const textHumidity = document.getElementById('humidity');
+        const textUv = document.getElementById('uv');
+        const textWind = document.getElementById('wind');
+        const date = document.getElementById('date');
+        const Oclock = document.getElementById('Oclock');
+
+        // ---- deklarasi variabel hrs di luar
+        var intervalId;
+        // ----
+
+
+        function index(){
+            alert("load")
+        }
+
+        var button = document.getElementById('klik');
+            
+            button.addEventListener('click',function (p){
+                const keyWord = document.getElementById('keyWord');
+                const key  = "50ddbb1560bc49a0aa654853242304";
+                const url  =  "https://api.open-meteo.com/v1/forecast ?latitude=52.52&longitude=13.41 ¤t=temperature_2m,wind_speed_10m &hourly=temperature_2m,relative_humidity_2m,wind_speed_10m"
+                const url2 =  `https://api.weatherapi.com/v1/current.json?key=${key}&q=${keyWord.value}&aqi=no`
+                
+                const url3 = "https://reqres.in/api/users/"
+                // ??
+                fetch(url2).then((res)=>res.json()).then(data =>{
+                    console.log(data)
+                    console.log(data.location)
+                    console.log(data.current)
+
+                    const weatherConditionMapping = {
+                        "Sunny":"Cerah",
+                        "Light rain shower": "Hujan Ringan Berawan",
+                        "Clear": "Cerah",
+                        "Partly cloudy": "Sebagian Berawan",
+                        "Cloudy": "Berawan",
+                        "Overcast": "Mendung",
+                        "Fog":"Kabut",
+                        "Mist": "Embun",
+                        "Partly Cloudy":"Berawan",
+                        "Patchy light drizzle":"Gerimis tipis-tipis",
+                        "Patchy rain possible": "Hujan Ringan Kemungkinan Terjadi",
+                        "Patchy rain nearby":"hujan merata disekitar",
+                        "Moderate or heavy rain shower":"Hujan sedang atau deras",
+                        // dsb
+                    }
+
+                    function translate(weatherNow){
+                        return weatherConditionMapping[weatherNow] || weatherNow;
+                    }
+                    var icon = data.current.condition.icon;
+
+                    img.src = icon;
+                    countryName.textContent = data.location.country;
+                    city.textContent = data.location.name;
+                    degrees.textContent = `${data.current.temp_c}°C`;
+                    condition.textContent = translate(data.current.condition.text);
+                    
+                    //== background == //
+                    // console.log("gambar blur :(")
+                    var dayOrNight = data.current.is_day == 1 
+                     ? 'https://i.pinimg.com/564x/a5/88/7f/a5887fa99ab8920d6a3998e6f44e7986.jpg'
+                     : 'https://i.pinimg.com/564x/c2/fb/00/c2fb004a1353ef99a33d0d7078d4cc5d.jpg';
+                    document.getElementById('body1').style.backgroundImage = `url(${dayOrNight})`;
+                    // document.getElementById('body1').style.height = '100vh';
+                    console.log(data.current.wind_dir)
+
+                    //== status ==//
+                    const imgView     = '<img width="28" height="28" src="https://img.icons8.com/ios-glyphs/30/FFFFFF/visible--v1.png" alt="visible--v1"/>';
+                    const imgHumidity = '<img width="30" height="30" src="https://img.icons8.com/windows/30/FFFFFF/hygrometer.png" alt="hygrometer"/>';
+                    const imgUv       = '<img width="29" height="29" src="https://img.icons8.com/material-outlined/30/FFFFFF/sun--v1.png" alt="sun--v1"/>';
+                    const imgWind     = '<img width="29" height="29" src="https://img.icons8.com/ios-filled/29/FFFFFF/wind--v1.png" alt="wind--v1"/>';
+                    //arah angin: data.current.wind_dir;
+                    textVis.innerHTML = imgView + ' ' + data.current.vis_km;
+                    textHumidity.innerHTML = imgHumidity  + ' ' + data.current.humidity;
+                    textUv.innerHTML =imgUv + ' ' + data.current.uv;
+                    textWind.innerHTML =imgWind + ' ' + data.current.wind_kph;
+                    
+                    
+                    //== waktu tgl == //
+                    const localTime1 = data.location.localtime;
+                    // split dipisah berdasarkan " " dan ":"
+                    const [isi1, isi2] =  localTime1.split(" ");
+                    const [isiJam1, isiJam2]= isi2.split(':');
+                    console.log(isiJam1, isiJam2)
+
+                    //===== perbandingan dan mengubah ke string =====//
+                    let tesAmPm = (parseInt(isiJam1) >= 0 && parseInt(isiJam1) <= 11  )? "AM" : "PM";
+
+                    console.log(tesAmPm)
+                    // console.log(data.location.localtime)
+                   
+                     // "clearInterval()" menghentikan interval, listener `click`Setiap kali 
+                    //  tombol diklik, Anda menambahkan satu lagi interval baru tanpa
+                    //  menghapus yang sebelumnya.
+                    
+                    clearInterval(intervalId);
+                  intervalId = setInterval(() => {
+                    const zonaWaktu = data.location.tz_id;
+                    const waktu1 = new Date();
+                    const ubah = waktu1.toLocaleString('en-US', {timeZone: zonaWaktu});
+                    const waktu2 = new Date(ubah);
+                    const jam2 = waktu2.getHours();
+                    const menit2 = waktu2.getMinutes();
+                    const second2 = waktu2.getSeconds();
+                    Oclock.textContent = `${jam2}:${menit2}:${second2} ${tesAmPm}`;
+
+                    date.textContent = waktu2.toLocaleDateString();
+                    
+                }, 1000); 
+                // cara lebih simpel:
+                // Oclock.textContent = `jam ${waktu2.toLocaleTimeString()}`;
+
+                    if(data){
+                        document.getElementById("idCondition").id = "tes";
+                        document.getElementById("idLocation").id = "idLocation-2";
+                        document.getElementById("idTime").id = "idTime-2";
+
+                    }else{
+                        // document.getElementById("tes").id = "idCondition";
+                        // document.getElementById("idLocation-2").id = "idLocation";
+                        // console.error("0");
+                    }
+
+
+                })
+            });
+    </script>
+    <!-- <br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br> -->
+</body>
+</html>
+
+<!-- <a target="_blank" href="https://icons8.com/icon/aBNtkpYvycsP/search">Search</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> -->
